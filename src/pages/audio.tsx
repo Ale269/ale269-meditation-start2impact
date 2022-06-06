@@ -1,5 +1,5 @@
-import song1 from "../audio/fisrtsong.mp3";
-import song2 from "../audio/Drifting at 432 Hz - Unicorn Heads.mp3";
+import song1 from "../audio/spacewalking.mp3";
+import song2 from "../audio/atlantis.mp3";
 import React, { useState, useRef, useEffect } from "react";
 
 const Audio: React.FC = () => {
