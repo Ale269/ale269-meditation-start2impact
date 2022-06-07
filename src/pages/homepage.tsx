@@ -11,13 +11,12 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     gsap.from(logoAnimation.current, {
-      duration: 1,
-      y: "-30%",
+      duration: 2,
       opacity: 0,
     });
 
     gsap.from(buttonAnimation.current, {
-      duration: 1,
+      duration: 0.5,
       delay: 1,
       opacity: 0,
     });
@@ -49,7 +48,7 @@ const HomePage: React.FC = () => {
         </p>
         <button
           onClick={() => {
-            navigate("/soundPage");
+            navigate("/sound");
           }}
         >
           Start now

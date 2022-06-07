@@ -35,11 +35,12 @@ const SoundPage: React.FC = () => {
       opacity: 0,
     });
 
-    gsap.from(soundCardAnimation.current, {
+    gsap.from(".sound-item-container", {
       duration: 1,
       y: "100%",
       delay: 1,
       opacity: 0,
+      stagger: 0.3,
     });
   }, []);
   return (

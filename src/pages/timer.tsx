@@ -5,8 +5,10 @@ import { setTimer } from "../features/settingSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { gsap } from "gsap";
+import { useNavigate } from "react-router-dom";
 
 const Timer: React.FC = () => {
+  let navigate = useNavigate();
   const [counterTimer, setCounterTimer] = useState<number>(1);
   const dispatch = useDispatch();
   const settings = useSelector((state: RootState) => {
@@ -49,7 +51,7 @@ const Timer: React.FC = () => {
         <img src={wave3} alt="background"></img>
       </div>
       <section className="timer-section">
-        <h1 ref={h1Animation}>Select a timer</h1>
+        <h1 ref={h1Animation}>Set the timer</h1>
         <div ref={timerAnimation} className="timer-container">
           <div className="increase-btn">
             <button
@@ -113,6 +115,7 @@ const Timer: React.FC = () => {
           className="timer-submit"
           onClick={() => {
             dispatch(setTimer(counterTimer));
+            navigate("/audio");
             console.log(settings);
           }}
         >
