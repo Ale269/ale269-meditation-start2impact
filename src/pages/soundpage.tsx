@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import island from "../img/migrating-island.jpg";
 import spaceWalking from "../img/spacewalking.jpg";
 import nebula from "../img/drifting-nebula.jpg";
@@ -10,6 +10,7 @@ import { setSong } from "../features/settingSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useNavigate } from "react-router-dom";
+import { gsap } from "gsap";
 
 const SoundPage: React.FC = () => {
   let navigate = useNavigate();
@@ -17,13 +18,38 @@ const SoundPage: React.FC = () => {
   const settings = useSelector((state: RootState) => {
     return state.settings.value;
   });
+
+  const waveAnimation = useRef<HTMLDivElement>(null);
+  const h1Animation = useRef<HTMLHeadingElement>(null);
+  const soundCardAnimation = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.from(waveAnimation.current, {
+      duration: 1,
+      y: "-100%",
+    });
+
+    gsap.from(h1Animation.current, {
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+    });
+
+    gsap.from(soundCardAnimation.current, {
+      duration: 1,
+      y: "100%",
+      delay: 1,
+      opacity: 0,
+    });
+  }, []);
   return (
     <>
-      <div className="wave-sound">
+      <div ref={waveAnimation} className="wave-sound">
         <img src={wave2} alt="background"></img>
       </div>
       <section className="sound-section">
-        <div className="sound-container">
+        <h1 ref={h1Animation}>Choose a sound</h1>
+        <div ref={soundCardAnimation} className="sound-container">
           <div className="sound-item-container">
             <h3>Drifting Nebula</h3>
             <img src={nebula} alt="nebula"></img>

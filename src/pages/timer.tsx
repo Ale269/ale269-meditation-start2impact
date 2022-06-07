@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import wave3 from "../img/wave-haikei3.svg";
 import { useDispatch } from "react-redux";
 import { setTimer } from "../features/settingSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { gsap } from "gsap";
 
 const Timer: React.FC = () => {
   const [counterTimer, setCounterTimer] = useState<number>(1);
@@ -11,71 +12,105 @@ const Timer: React.FC = () => {
   const settings = useSelector((state: RootState) => {
     return state.settings.value;
   });
+
+  const waveAnimation = useRef<HTMLDivElement>(null);
+  const h1Animation = useRef<HTMLHeadingElement>(null);
+  const timerAnimation = useRef<HTMLDivElement>(null);
+  const submitAnimationBtn = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    gsap.from(waveAnimation.current, {
+      duration: 1,
+      y: "-100%",
+    });
+
+    gsap.from(h1Animation.current, {
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+    });
+
+    gsap.from(timerAnimation.current, {
+      duration: 1,
+      delay: 1.2,
+      opacity: 0,
+    });
+
+    gsap.from(submitAnimationBtn.current, {
+      duration: 1,
+      delay: 1.4,
+      opacity: 0,
+    });
+  }, []);
+
   return (
     <>
-      <div className="wave-timer">
+      <div ref={waveAnimation} className="wave-timer">
         <img src={wave3} alt="background"></img>
       </div>
       <section className="timer-section">
-        <div className="timer-container">
+        <h1 ref={h1Animation}>Select a timer</h1>
+        <div ref={timerAnimation} className="timer-container">
+          <div className="increase-btn">
+            <button
+              onClick={() => {
+                setCounterTimer((state) => {
+                  return state + 1;
+                });
+              }}
+            >
+              +
+            </button>
+            <button
+              className="btn-factor-ten"
+              onClick={() => {
+                setCounterTimer((state) => {
+                  return state + 10;
+                });
+              }}
+            >
+              +10
+            </button>
+          </div>
           <div className="number">
             <h3>{counterTimer}</h3>
             <h4>minutes</h4>
           </div>
-          <div className="button-container">
-            <div className="increase-btn">
-              <button
-                onClick={() => {
-                  setCounterTimer((state) => {
-                    return state + 1;
-                  });
-                }}
-              >
-                +
-              </button>
-              <button
-                onClick={() => {
-                  setCounterTimer((state) => {
-                    return state + 10;
-                  });
-                }}
-              >
-                +10
-              </button>
-            </div>
-            <div className="decrease-btn">
-              <button
-                onClick={() => {
-                  setCounterTimer((state) => {
-                    if (state > 0) {
-                      return state - 1;
-                    } else {
-                      return state;
-                    }
-                  });
-                }}
-              >
-                -
-              </button>
-              <button
-                onClick={() => {
-                  setCounterTimer((state) => {
-                    if (state > 10) {
-                      return state - 10;
-                    } else if (state < 10 && state > 0) {
-                      return 0;
-                    } else {
-                      return state;
-                    }
-                  });
-                }}
-              >
-                -10
-              </button>
-            </div>
+          <div className="decrease-btn">
+            <button
+              onClick={() => {
+                setCounterTimer((state) => {
+                  if (state > 0) {
+                    return state - 1;
+                  } else {
+                    return state;
+                  }
+                });
+              }}
+            >
+              -
+            </button>
+            <button
+              className="btn-factor-ten"
+              onClick={() => {
+                setCounterTimer((state) => {
+                  if (state > 10) {
+                    return state - 10;
+                  } else if (state < 10 && state > 0) {
+                    return 0;
+                  } else {
+                    return state;
+                  }
+                });
+              }}
+            >
+              -10
+            </button>
           </div>
         </div>
         <button
+          ref={submitAnimationBtn}
+          className="timer-submit"
           onClick={() => {
             dispatch(setTimer(counterTimer));
             console.log(settings);

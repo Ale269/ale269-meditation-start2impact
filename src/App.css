@@ -53,6 +53,7 @@ nav a.active {
   font-family: "Cormorant Garamond", serif;
   font-size: 40px;
   color: #fff;
+  font-weight: 300;
   margin-bottom: 10px;
 }
 
@@ -114,6 +115,15 @@ nav a.active {
   padding-top: 70px;
 }
 
+.sound-section h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
 .wave-sound {
   position: absolute;
   z-index: -1;
@@ -173,5 +183,108 @@ nav a.active {
 }
 
 .timer-section {
-  margin-top: 300px;
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-section h1 {
+  margin-bottom: 200px;
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 250px;
+  margin: 40px;
+  height: 150px;
+  padding: 10px;
+  color: #2c0154;
+  border-radius: 10px;
+  border: solid 2px #ffa69e;
+  box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.35);
+}
+
+.increase-btn {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 30%;
+  height: 100%;
+}
+
+.increase-btn button {
+  background: transparent;
+  font-family: "Dosis", sans-serif;
+  font-weight: 500;
+  height: 47%;
+  color: #2c0154;
+  border: 2px solid #ffa69e;
+  outline: none;
+  font-size: 30px;
+  border-radius: 10px;
+}
+
+.decrease-btn {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 30%;
+  height: 100%;
+}
+
+.decrease-btn button {
+  background: transparent;
+  font-weight: 500;
+  font-family: "Dosis", sans-serif;
+  height: 47%;
+  color: #2c0154;
+  border-radius: 10px;
+  border: 2px solid #ffa69e;
+  outline: none;
+  font-size: 30px;
+  border-radius: 10px;
+}
+
+.number {
+  color: #1f91a3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.number h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.increase-btn .btn-factor-ten {
+  border: 2px solid #2c0154;
+  font-size: 20px;
+}
+
+.decrease-btn .btn-factor-ten {
+  border: 2px solid #2c0154;
+  font-size: 20px;
+}
+
+.timer-submit {
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  height: 44px;
+  width: 200px;
+  background-color: #1f91a3;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
 }
