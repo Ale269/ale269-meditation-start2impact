@@ -5,9 +5,12 @@ import { gsap } from "gsap";
 
 const HomePage: React.FC = () => {
   let navigate = useNavigate();
+
+  // ref for animation
   let logoAnimation = useRef<HTMLImageElement>(null);
   let buttonAnimation = useRef<HTMLDivElement>(null);
 
+  // animation logic
   useEffect(() => {
     const stopAnimation = localStorage.getItem("homeAnimation");
     if (stopAnimation !== null) {

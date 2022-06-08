@@ -1,22 +1,20 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { element } from "../module/audioImage";
 import { setSong } from "../features/settingSlice";
-import { RootState } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 
 const SoundPage: React.FC = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const settings = useSelector((state: RootState) => {
-    return state.settings.value;
-  });
 
+  // ref for animation
   const waveAnimation = useRef<HTMLDivElement>(null);
   const h1Animation = useRef<HTMLHeadingElement>(null);
   const soundCardAnimation = useRef<HTMLDivElement>(null);
 
+  // animation logic
   useEffect(() => {
     const stopAnimation = localStorage.getItem("soundAnimation");
     if (stopAnimation !== null) {
@@ -44,6 +42,7 @@ const SoundPage: React.FC = () => {
 
     localStorage.setItem("soundAnimation", "true");
   }, []);
+
   return (
     <>
       <div ref={waveAnimation} className="wave-sound">

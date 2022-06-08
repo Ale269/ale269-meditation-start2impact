@@ -1,24 +1,24 @@
 import React, { useState, useRef, useEffect } from "react";
 import { element } from "../module/audioImage";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setTimer } from "../features/settingSlice";
-import { RootState } from "../redux/store";
 import { gsap } from "gsap";
 import { useNavigate } from "react-router-dom";
 
 const Timer: React.FC = () => {
   let navigate = useNavigate();
+
+  // state for timer
   const [counterTimer, setCounterTimer] = useState<number>(1);
   const dispatch = useDispatch();
-  const settings = useSelector((state: RootState) => {
-    return state.settings.value;
-  });
 
+  // ref for animation
   const waveAnimation = useRef<HTMLDivElement>(null);
   const h1Animation = useRef<HTMLHeadingElement>(null);
   const timerAnimation = useRef<HTMLDivElement>(null);
   const submitAnimationBtn = useRef<HTMLButtonElement>(null);
 
+  // animation logic
   useEffect(() => {
     const stopAnimation = localStorage.getItem("timerAnimation");
     if (stopAnimation !== null) {
@@ -51,6 +51,31 @@ const Timer: React.FC = () => {
     localStorage.setItem("timerAnimation", "true");
   }, []);
 
+  //set timer logic
+  const timerHandler = (action: string) => {
+    setCounterTimer((state) => {
+      switch (action) {
+        case "increase":
+          return state + 1;
+        case "increase10":
+          return state + 10;
+        case "decrease":
+          if (state > 0) {
+            return state - 1;
+          }
+          return 0;
+        case "decrease10":
+          if (state > 10) {
+            return state - 10;
+          }
+          return 0;
+        default:
+          return state;
+      }
+    });
+    return;
+  };
+
   return (
     <>
       <div ref={waveAnimation} className="wave-timer">
@@ -60,22 +85,10 @@ const Timer: React.FC = () => {
         <h1 ref={h1Animation}>Set the timer</h1>
         <div ref={timerAnimation} className="timer-container">
           <div className="increase-btn">
-            <button
-              onClick={() => {
-                setCounterTimer((state) => {
-                  return state + 1;
-                });
-              }}
-            >
-              +
-            </button>
+            <button onClick={() => timerHandler("increase")}>+</button>
             <button
               className="btn-factor-ten"
-              onClick={() => {
-                setCounterTimer((state) => {
-                  return state + 10;
-                });
-              }}
+              onClick={() => timerHandler("increase10")}
             >
               +10
             </button>
@@ -85,32 +98,10 @@ const Timer: React.FC = () => {
             <h4>minutes</h4>
           </div>
           <div className="decrease-btn">
-            <button
-              onClick={() => {
-                setCounterTimer((state) => {
-                  if (state > 0) {
-                    return state - 1;
-                  } else {
-                    return state;
-                  }
-                });
-              }}
-            >
-              -
-            </button>
+            <button onClick={() => timerHandler("decrease")}>-</button>
             <button
               className="btn-factor-ten"
-              onClick={() => {
-                setCounterTimer((state) => {
-                  if (state > 10) {
-                    return state - 10;
-                  } else if (state < 10 && state > 0) {
-                    return 0;
-                  } else {
-                    return state;
-                  }
-                });
-              }}
+              onClick={() => timerHandler("decrease10")}
             >
               -10
             </button>
@@ -123,7 +114,6 @@ const Timer: React.FC = () => {
             dispatch(setTimer(counterTimer));
             localStorage.setItem("choosenTime", counterTimer.toString());
             navigate("/audio");
-            console.log(settings);
           }}
         >
           Start

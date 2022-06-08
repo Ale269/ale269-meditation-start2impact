@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
+import { setSong } from "../features/settingSlice";
 import { element } from "../module/audioImage";
 
 interface SRC {
@@ -13,6 +14,8 @@ const AudioPage: React.FC = () => {
   const settings = useSelector((state: RootState) => {
     return state.settings.value;
   });
+
+  console.log(settings);
 
   const srcArray: SRC[] = [
     { audio: element.nebula.audio, image: element.nebula.image, number: 0 },
@@ -82,6 +85,23 @@ const AudioPage: React.FC = () => {
 
   const audio = useRef<HTMLAudioElement>(null);
 
+  const setMemory = (num: number) => {
+    switch (num) {
+      case 0:
+        return "nebula";
+      case 1:
+        return "atlantis";
+      case 2:
+        return "spaceWalking";
+      case 3:
+        return "island";
+      case 4:
+        return "garden";
+      default:
+        return "nebula";
+    }
+  };
+
   return (
     <div className="Audio-test">
       <audio ref={audio} src={srcState.audio} loop></audio>
@@ -90,17 +110,24 @@ const AudioPage: React.FC = () => {
       <button
         onClick={() => {
           setSrcState((state) => {
-            const num = state.number;
-            let newNum = num - 1;
-            if (num === 0) {
-              newNum = 4;
+            let num = state.number - 1;
+            if (state.number === 0) {
+              num = 4;
             }
+
             return {
-              audio: srcArray[newNum].audio,
-              image: srcArray[newNum].image,
-              number: srcArray[newNum].number,
+              audio: srcArray[num].audio,
+              image: srcArray[num].image,
+              number: srcArray[num].number,
             };
           });
+
+          if (srcState.number === 0) {
+            localStorage.setItem("choosenSong", "garden");
+            return;
+          }
+
+          localStorage.setItem("choosenSong", setMemory(srcState.number - 1));
         }}
       >
         previus
@@ -116,17 +143,23 @@ const AudioPage: React.FC = () => {
       <button
         onClick={() => {
           setSrcState((state) => {
-            const num = state.number;
-            let newNum = num + 1;
-            if (num === 4) {
-              newNum = 0;
+            let num = state.number + 1;
+            if (state.number === 4) {
+              num = 0;
             }
             return {
-              audio: srcArray[newNum].audio,
-              image: srcArray[newNum].image,
-              number: srcArray[newNum].number,
+              audio: srcArray[num].audio,
+              image: srcArray[num].image,
+              number: srcArray[num].number,
             };
           });
+
+          if (srcState.number === 4) {
+            localStorage.setItem("choosenSong", "nebula");
+            return;
+          }
+
+          localStorage.setItem("choosenSong", setMemory(srcState.number + 1));
         }}
       >
         previus
