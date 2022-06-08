@@ -1,13 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import island from "../img/migrating-island.jpg";
-import spaceWalking from "../img/spacewalking.jpg";
-import nebula from "../img/drifting-nebula.jpg";
-import atlantis from "../img/atlantis.jpg";
-import garden from "../img/eternal-garden.jpg";
-import wave2 from "../img/wave-haikei2.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { element } from "../module/audioImage";
 import { setSong } from "../features/settingSlice";
-import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
@@ -24,6 +18,11 @@ const SoundPage: React.FC = () => {
   const soundCardAnimation = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const stopAnimation = localStorage.getItem("soundAnimation");
+    if (stopAnimation !== null) {
+      return;
+    }
+
     gsap.from(waveAnimation.current, {
       duration: 1,
       y: "-100%",
@@ -42,21 +41,24 @@ const SoundPage: React.FC = () => {
       opacity: 0,
       stagger: 0.3,
     });
+
+    localStorage.setItem("soundAnimation", "true");
   }, []);
   return (
     <>
       <div ref={waveAnimation} className="wave-sound">
-        <img src={wave2} alt="background"></img>
+        <img src={element.wave2} alt="background"></img>
       </div>
       <section className="sound-section">
         <h1 ref={h1Animation}>Choose a sound</h1>
         <div ref={soundCardAnimation} className="sound-container">
           <div className="sound-item-container">
             <h3>Drifting Nebula</h3>
-            <img src={nebula} alt="nebula"></img>
+            <img src={element.nebula.image} alt="nebula"></img>
             <button
               onClick={() => {
                 dispatch(setSong("nebula"));
+                localStorage.setItem("choosenSong", "nebula");
                 navigate("/timer");
               }}
             >
@@ -65,10 +67,11 @@ const SoundPage: React.FC = () => {
           </div>
           <div className="sound-item-container">
             <h3>Atlantis</h3>
-            <img src={atlantis} alt="atlantis"></img>
+            <img src={element.atlantis.image} alt="atlantis"></img>
             <button
               onClick={() => {
                 dispatch(setSong("atlantis"));
+                localStorage.setItem("choosenSong", "atlantis");
                 navigate("/timer");
               }}
             >
@@ -77,10 +80,11 @@ const SoundPage: React.FC = () => {
           </div>
           <div className="sound-item-container">
             <h3>Spacewalking</h3>
-            <img src={spaceWalking} alt="space walking"></img>
+            <img src={element.spaceWalking.image} alt="space walking"></img>
             <button
               onClick={() => {
                 dispatch(setSong("spaceWalking"));
+                localStorage.setItem("choosenSong", "spacewalking");
                 navigate("/timer");
               }}
             >
@@ -89,10 +93,11 @@ const SoundPage: React.FC = () => {
           </div>
           <div className="sound-item-container">
             <h3>Migrating island</h3>
-            <img src={island} alt="migrating island"></img>
+            <img src={element.island.image} alt="migrating island"></img>
             <button
               onClick={() => {
                 dispatch(setSong("island"));
+                localStorage.setItem("choosenSong", "island");
                 navigate("/timer");
               }}
             >
@@ -101,10 +106,11 @@ const SoundPage: React.FC = () => {
           </div>
           <div className="sound-item-container">
             <h3>Eternal Garden</h3>
-            <img src={garden} alt="eternal garden"></img>
+            <img src={element.eternalGarden.image} alt="eternal garden"></img>
             <button
               onClick={() => {
                 dispatch(setSong("garden"));
+                localStorage.setItem("choosenSong", "garden");
                 navigate("/timer");
               }}
             >

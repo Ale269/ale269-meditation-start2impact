@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Sfondo from "../img/sfondo.svg";
-import wave from "../img/wave-haikei.svg";
+import { element } from "../module/audioImage";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 
@@ -10,6 +9,10 @@ const HomePage: React.FC = () => {
   let buttonAnimation = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const stopAnimation = localStorage.getItem("homeAnimation");
+    if (stopAnimation !== null) {
+      return;
+    }
     gsap.from(logoAnimation.current, {
       duration: 2,
       opacity: 0,
@@ -20,6 +23,8 @@ const HomePage: React.FC = () => {
       delay: 1,
       opacity: 0,
     });
+
+    localStorage.setItem("homeAnimation", "true");
   }, []);
 
   return (
@@ -31,13 +36,13 @@ const HomePage: React.FC = () => {
           <img
             ref={logoAnimation}
             className="hero-image"
-            src={Sfondo}
+            src={element.homePageBackground}
             alt="meditation"
           />
         </div>
       </div>
       <div className="wave">
-        <img src={wave} alt="background"></img>
+        <img src={element.wave} alt="background"></img>
       </div>
       <div ref={buttonAnimation} className="use-container">
         <h2>Let's Relax</h2>

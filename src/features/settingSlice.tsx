@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: {
-    song: "",
-    time: 0,
+    song: localStorage.getItem("choosenSong") || "",
+    time: Number(localStorage.getItem("choosenTimer")) || 1,
   },
 };
 

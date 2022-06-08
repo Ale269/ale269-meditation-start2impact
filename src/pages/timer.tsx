@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import wave3 from "../img/wave-haikei3.svg";
-import { useDispatch } from "react-redux";
+import { element } from "../module/audioImage";
+import { useDispatch, useSelector } from "react-redux";
 import { setTimer } from "../features/settingSlice";
-import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { gsap } from "gsap";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +20,11 @@ const Timer: React.FC = () => {
   const submitAnimationBtn = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    const stopAnimation = localStorage.getItem("timerAnimation");
+    if (stopAnimation !== null) {
+      return;
+    }
+
     gsap.from(waveAnimation.current, {
       duration: 1,
       y: "-100%",
@@ -43,12 +47,14 @@ const Timer: React.FC = () => {
       delay: 1.4,
       opacity: 0,
     });
+
+    localStorage.setItem("timerAnimation", "true");
   }, []);
 
   return (
     <>
       <div ref={waveAnimation} className="wave-timer">
-        <img src={wave3} alt="background"></img>
+        <img src={element.wave3} alt="background"></img>
       </div>
       <section className="timer-section">
         <h1 ref={h1Animation}>Set the timer</h1>
@@ -115,6 +121,7 @@ const Timer: React.FC = () => {
           className="timer-submit"
           onClick={() => {
             dispatch(setTimer(counterTimer));
+            localStorage.setItem("choosenTime", counterTimer.toString());
             navigate("/audio");
             console.log(settings);
           }}
