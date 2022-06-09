@@ -43,6 +43,13 @@ const SoundPage: React.FC = () => {
     localStorage.setItem("soundAnimation", "true");
   }, []);
 
+  // set sound and navigate
+  const HandleClick = (sound: string) => {
+    dispatch(setSong(sound));
+    localStorage.setItem("choosenSong", sound);
+    navigate("/timer");
+  };
+
   return (
     <>
       <div ref={waveAnimation} className="wave-sound">
@@ -56,9 +63,7 @@ const SoundPage: React.FC = () => {
             <img src={element.nebula.image} alt="nebula"></img>
             <button
               onClick={() => {
-                dispatch(setSong("nebula"));
-                localStorage.setItem("choosenSong", "nebula");
-                navigate("/timer");
+                HandleClick("nebula");
               }}
             >
               Select
@@ -69,9 +74,7 @@ const SoundPage: React.FC = () => {
             <img src={element.atlantis.image} alt="atlantis"></img>
             <button
               onClick={() => {
-                dispatch(setSong("atlantis"));
-                localStorage.setItem("choosenSong", "atlantis");
-                navigate("/timer");
+                HandleClick("atlantis");
               }}
             >
               Select
@@ -82,9 +85,7 @@ const SoundPage: React.FC = () => {
             <img src={element.spaceWalking.image} alt="space walking"></img>
             <button
               onClick={() => {
-                dispatch(setSong("spaceWalking"));
-                localStorage.setItem("choosenSong", "spacewalking");
-                navigate("/timer");
+                HandleClick("spaceWalking");
               }}
             >
               Select
@@ -95,9 +96,7 @@ const SoundPage: React.FC = () => {
             <img src={element.island.image} alt="migrating island"></img>
             <button
               onClick={() => {
-                dispatch(setSong("island"));
-                localStorage.setItem("choosenSong", "island");
-                navigate("/timer");
+                HandleClick("island");
               }}
             >
               Select
@@ -108,9 +107,7 @@ const SoundPage: React.FC = () => {
             <img src={element.eternalGarden.image} alt="eternal garden"></img>
             <button
               onClick={() => {
-                dispatch(setSong("garden"));
-                localStorage.setItem("choosenSong", "garden");
-                navigate("/timer");
+                HandleClick("garden");
               }}
             >
               Select
