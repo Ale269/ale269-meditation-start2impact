@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/App.css";
 import { HashRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import Audio from "./pages/audio";
 import HomePage from "./pages/homepage";
 import SoundPage from "./pages/soundpage";
 import Timer from "./pages/timer";
@@ -18,7 +17,6 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/audioTest" element={<Audio />} />
         <Route path="/sound" element={<SoundPage />} />
         <Route path="/timer" element={<Timer />} />
         <Route path="audio" element={<AudioPage />} />

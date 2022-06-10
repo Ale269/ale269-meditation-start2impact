@@ -53,7 +53,7 @@ const SoundPage: React.FC = () => {
   const soundElements = element.audioArray.map((element) => {
     return (
       <div className="sound-item-container">
-        <h3>Drifting Nebula</h3>
+        <h3>{element.name}</h3>
         <img src={element.image} alt="nebula"></img>
         <button
           onClick={() => {

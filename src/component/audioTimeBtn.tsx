@@ -7,6 +7,7 @@ import TimerComponent from "./timerComponent";
 interface SRC {
   audio: string;
   image: string;
+  name: string;
   key: number;
 }
 
@@ -76,6 +77,7 @@ const AudioTimeBtn: React.FC<Props> = ({
       return {
         audio: srcArray[num].audio,
         image: srcArray[num].image,
+        name: srcArray[num].name,
         key: srcArray[num].key,
       };
     });
@@ -135,7 +137,7 @@ const AudioTimeBtn: React.FC<Props> = ({
           changeState("previus");
         }}
       >
-        previus
+        <i className="fa-solid fa-backward"></i>
       </button>
       {isPlaying ? (
         <button
@@ -143,7 +145,7 @@ const AudioTimeBtn: React.FC<Props> = ({
             PlayOrPause();
           }}
         >
-          pause
+          <i className="fa-solid fa-pause"></i>
         </button>
       ) : (
         <button
@@ -151,7 +153,7 @@ const AudioTimeBtn: React.FC<Props> = ({
             PlayOrPause();
           }}
         >
-          play
+          <i className="fa-solid fa-play"></i>
         </button>
       )}
       <button
@@ -159,7 +161,7 @@ const AudioTimeBtn: React.FC<Props> = ({
           changeState("subsequent");
         }}
       >
-        dopo
+        <i className="fa-solid fa-forward"></i>
       </button>
       <button
         onClick={() => {

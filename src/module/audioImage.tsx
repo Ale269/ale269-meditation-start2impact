@@ -1,18 +1,22 @@
-import spaceWalkingAudio from "../audio/spacewalking.mp3";
-import eternalGardenAudio from "../audio/eternal-garden.mp3";
-import islandAudio from "../audio/migrant-island.mp3";
-import atlantisAudio from "../audio/atlantis.mp3";
-import nebulaAudio from "../audio/drifting-nebula.mp3";
+import distantStormAudio from "../audio/distant-storm.mp3";
+import fireAudio from "../audio/FIre.mp3";
+import horseEatingAudio from "../audio/horse-eating.mp3";
+import lakeAudio from "../audio/lake.mp3";
+import rainingDayAudio from "../audio/raining-day.mp3";
+import swingingBoatAudio from "../audio/rumbling-boat.mp3";
+import seaWaveAudio from "../audio/sea-wave.mp3";
+import summerNightAudio from "../audio/summer-night.mp3";
+import farmMorningAudio from "../audio/farm-morning.mp3";
+import IntoTheJungleAudio from "../audio/into-the-jungle.mp3";
+import forestAudio from "../audio/forest.mp3";
+import snowWalkingAudio from "../audio/snow-walking.mp3";
+
 import waveImg from "../img/wave-haikei.svg";
 import wave2Img from "../img/wave-haikei2.svg";
 import wave3Img from "../img/wave-haikei3.svg";
 import homePageBackgroundImg from "../img/sfondo.svg";
 
 import spaceWalkingImage from "../img/spacewalking.jpg";
-import eternalGardenImage from "../img/eternal-garden.jpg";
-import islandImage from "../img/migrating-island.jpg";
-import atlantisImage from "../img/atlantis.jpg";
-import nebulaImage from "../img/drifting-nebula.jpg";
 
 export const element = {
   homePageBackground: homePageBackgroundImg,
@@ -21,29 +25,78 @@ export const element = {
   wave3: wave3Img,
   audioArray: [
     {
-      audio: spaceWalkingAudio,
+      audio: summerNightAudio,
       image: spaceWalkingImage,
+      name: "Summer Night",
       key: 0,
     },
     {
-      audio: eternalGardenAudio,
-      image: eternalGardenImage,
+      audio: seaWaveAudio,
+      image: spaceWalkingImage,
+      name: "Waving Sea",
       key: 1,
     },
     {
-      audio: islandAudio,
-      image: islandImage,
+      audio: swingingBoatAudio,
+      image: spaceWalkingImage,
+      name: "Swinging Boat",
       key: 2,
     },
     {
-      audio: atlantisAudio,
-      image: atlantisImage,
+      audio: rainingDayAudio,
+      image: spaceWalkingImage,
+      name: "Rainy Day",
       key: 3,
     },
     {
-      audio: nebulaAudio,
-      image: nebulaImage,
+      audio: lakeAudio,
+      image: spaceWalkingImage,
+      name: "Lake Shore",
       key: 4,
+    },
+
+    {
+      audio: horseEatingAudio,
+      image: spaceWalkingImage,
+      name: "Grazing Horse",
+      key: 5,
+    },
+
+    {
+      audio: fireAudio,
+      image: spaceWalkingImage,
+      name: "Crackling Fire",
+      key: 6,
+    },
+    {
+      audio: distantStormAudio,
+      image: spaceWalkingImage,
+      name: "A Distant Storm",
+      key: 8,
+    },
+    {
+      audio: farmMorningAudio,
+      image: spaceWalkingImage,
+      name: "Farm Morning",
+      key: 9,
+    },
+    {
+      audio: IntoTheJungleAudio,
+      image: spaceWalkingImage,
+      name: "Into The Jungle",
+      key: 11,
+    },
+    {
+      audio: forestAudio,
+      image: spaceWalkingImage,
+      name: "A windy Forest",
+      key: 12,
+    },
+    {
+      audio: snowWalkingAudio,
+      image: spaceWalkingImage,
+      name: "Walking In The Snow",
+      key: 13,
     },
   ],
 };

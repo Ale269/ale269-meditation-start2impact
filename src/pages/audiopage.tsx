@@ -7,6 +7,7 @@ import AudioTimeBtn from "../component/audioTimeBtn";
 interface SRC {
   audio: string;
   image: string;
+  name: string;
   key: number;
 }
 
@@ -25,7 +26,7 @@ const AudioPage: React.FC = () => {
   const time: number = settings.time;
 
   const [srcState, setSrcState] = useState<SRC>(
-    element.audioArray[Number(settings.song)]
+    element.audioArray[settings.song]
   );
 
   return (
