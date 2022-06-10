@@ -19,24 +19,31 @@ export const element = {
   wave: waveImg,
   wave2: wave2Img,
   wave3: wave3Img,
-  spaceWalking: {
-    audio: spaceWalkingAudio,
-    image: spaceWalkingImage,
-  },
-  eternalGarden: {
-    audio: eternalGardenAudio,
-    image: eternalGardenImage,
-  },
-  island: {
-    audio: islandAudio,
-    image: islandImage,
-  },
-  atlantis: {
-    audio: atlantisAudio,
-    image: atlantisImage,
-  },
-  nebula: {
-    audio: nebulaAudio,
-    image: nebulaImage,
-  },
+  audioArray: [
+    {
+      audio: spaceWalkingAudio,
+      image: spaceWalkingImage,
+      key: 0,
+    },
+    {
+      audio: eternalGardenAudio,
+      image: eternalGardenImage,
+      key: 1,
+    },
+    {
+      audio: islandAudio,
+      image: islandImage,
+      key: 2,
+    },
+    {
+      audio: atlantisAudio,
+      image: atlantisImage,
+      key: 3,
+    },
+    {
+      audio: nebulaAudio,
+      image: nebulaImage,
+      key: 4,
+    },
+  ],
 };

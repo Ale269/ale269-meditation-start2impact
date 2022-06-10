@@ -44,11 +44,27 @@ const SoundPage: React.FC = () => {
   }, []);
 
   // set sound and navigate
-  const HandleClick = (sound: string) => {
+  const HandleClick = (sound: number) => {
     dispatch(setSong(sound));
-    localStorage.setItem("choosenSong", sound);
+    localStorage.setItem("choosenSong", sound.toString());
     navigate("/timer");
   };
+
+  const soundElements = element.audioArray.map((element) => {
+    return (
+      <div className="sound-item-container">
+        <h3>Drifting Nebula</h3>
+        <img src={element.image} alt="nebula"></img>
+        <button
+          onClick={() => {
+            HandleClick(element.key);
+          }}
+        >
+          Select
+        </button>
+      </div>
+    );
+  });
 
   return (
     <>
@@ -58,61 +74,7 @@ const SoundPage: React.FC = () => {
       <section className="sound-section">
         <h1 ref={h1Animation}>Choose a sound</h1>
         <div ref={soundCardAnimation} className="sound-container">
-          <div className="sound-item-container">
-            <h3>Drifting Nebula</h3>
-            <img src={element.nebula.image} alt="nebula"></img>
-            <button
-              onClick={() => {
-                HandleClick("nebula");
-              }}
-            >
-              Select
-            </button>
-          </div>
-          <div className="sound-item-container">
-            <h3>Atlantis</h3>
-            <img src={element.atlantis.image} alt="atlantis"></img>
-            <button
-              onClick={() => {
-                HandleClick("atlantis");
-              }}
-            >
-              Select
-            </button>
-          </div>
-          <div className="sound-item-container">
-            <h3>Spacewalking</h3>
-            <img src={element.spaceWalking.image} alt="space walking"></img>
-            <button
-              onClick={() => {
-                HandleClick("spaceWalking");
-              }}
-            >
-              Select
-            </button>
-          </div>
-          <div className="sound-item-container">
-            <h3>Migrating island</h3>
-            <img src={element.island.image} alt="migrating island"></img>
-            <button
-              onClick={() => {
-                HandleClick("island");
-              }}
-            >
-              Select
-            </button>
-          </div>
-          <div className="sound-item-container">
-            <h3>Eternal Garden</h3>
-            <img src={element.eternalGarden.image} alt="eternal garden"></img>
-            <button
-              onClick={() => {
-                HandleClick("garden");
-              }}
-            >
-              Select
-            </button>
-          </div>
+          {soundElements}
         </div>
       </section>
     </>

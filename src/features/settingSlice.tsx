@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: {
-    song: localStorage.getItem("choosenSong") || "",
-    time: Number(localStorage.getItem("choosenTimer")) || 1,
+    song: localStorage.getItem("choosenSong") || 0,
+    time: Number(localStorage.getItem("choosenTime")) || 1,
   },
 };
 
 interface SongAction {
-  payload: string;
+  payload: number;
 }
 
 interface TimeAction {
@@ -20,10 +20,20 @@ export const settingSlice = createSlice({
   initialState,
   reducers: {
     setSong: (state, action: SongAction) => {
-      state.value.song = action.payload;
+      return {
+        value: {
+          ...state.value,
+          song: action.payload,
+        },
+      };
     },
     setTimer: (state, action: TimeAction) => {
-      state.value.time = action.payload;
+      return {
+        value: {
+          ...state.value,
+          time: action.payload,
+        },
+      };
     },
   },
 });
