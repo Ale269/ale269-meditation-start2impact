@@ -10,6 +10,7 @@ interface PROPS {
   isPlaying: Boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<Boolean>>;
   audio: React.RefObject<HTMLAudioElement>;
+  setTimeIsOver: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 const TimerComponent: React.FC<PROPS> = ({
@@ -17,6 +18,7 @@ const TimerComponent: React.FC<PROPS> = ({
   isPlaying,
   setIsPlaying,
   audio,
+  setTimeIsOver,
 }) => {
   // timer variable for controll
   const [timer, setTimer] = useState<TIMER>({ minutes: time, seconds: 0 });
@@ -26,12 +28,7 @@ const TimerComponent: React.FC<PROPS> = ({
     if (isPlaying) {
       timerIntervall.current = setInterval(() => {
         setTimer((oldState) => {
-          if (oldState.seconds === 0 && oldState.minutes === 0) {
-            audio.current?.pause();
-            clearInterval(timerIntervall.current);
-            setIsPlaying(false);
-            return { ...oldState };
-          } else if (oldState.seconds === 0) {
+          if (oldState.seconds === 0) {
             return {
               minutes: oldState.minutes - 1,
               seconds: 59,
@@ -49,10 +46,21 @@ const TimerComponent: React.FC<PROPS> = ({
     }
   }, [isPlaying]);
 
+  useEffect(() => {
+    if (timer.minutes === 0 && timer.seconds === 0) {
+      setIsPlaying(false);
+      audio.current?.pause();
+      setTimeIsOver(true);
+      document.querySelector(".player-btn")?.classList.add("inactive");
+    }
+  }, [timer]);
+
   return (
-    <div>
-      <h3>{timer.minutes >= 10 ? timer.minutes : "0" + timer.minutes}</h3>
-      <h3>{timer.seconds >= 10 ? timer.seconds : "0" + timer.seconds}</h3>
+    <div className="time-stamp">
+      <h3>
+        {timer.minutes >= 10 ? timer.minutes : "0" + timer.minutes} :{" "}
+        {timer.seconds >= 10 ? timer.seconds : "0" + timer.seconds}
+      </h3>
     </div>
   );
 };

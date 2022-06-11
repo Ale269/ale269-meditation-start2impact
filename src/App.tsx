@@ -13,7 +13,6 @@ function App() {
         <NavLink to="/">
           <i className="fa-solid fa-house"></i>
         </NavLink>
-        <NavLink to="/audio">Audio</NavLink>
       </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />

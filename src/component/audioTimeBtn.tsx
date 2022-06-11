@@ -27,6 +27,8 @@ const AudioTimeBtn: React.FC<Props> = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [timeIsOver, setTimeIsOver] = useState<Boolean>(false);
+
   // audio variable for controll
   const [isPlaying, setIsPlaying] = useState<Boolean>(false);
   const isInitialStart = useRef<boolean>(true);
@@ -38,12 +40,17 @@ const AudioTimeBtn: React.FC<Props> = ({
       <>
         <audio ref={audio} src={srcState.audio} loop></audio>
         <img src={srcState.image} alt="song cover"></img>
+        <h3 className="title">{srcState.name}</h3>
       </>
     );
   }, [srcState.audio]);
 
   // function
   const PlayOrPause = () => {
+    if (timeIsOver === true) {
+      return;
+    }
+
     const currentValue = isPlaying;
     setIsPlaying(!isPlaying);
 
@@ -55,6 +62,9 @@ const AudioTimeBtn: React.FC<Props> = ({
   };
 
   const changeState = (direction: string) => {
+    if (timeIsOver === true) {
+      return;
+    }
     setSrcState((state: SRC) => {
       let num: number = 0;
       switch (direction) {
@@ -124,53 +134,60 @@ const AudioTimeBtn: React.FC<Props> = ({
   }, [srcState]);
 
   return (
-    <>
+    <div className="audio-btn-container">
       {AudioComponent}
       <TimerComponent
         time={time}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         audio={audio}
+        setTimeIsOver={setTimeIsOver}
       />
-      <button
-        onClick={() => {
-          changeState("previus");
-        }}
-      >
-        <i className="fa-solid fa-backward"></i>
-      </button>
-      {isPlaying ? (
-        <button
-          onClick={() => {
-            PlayOrPause();
-          }}
-        >
-          <i className="fa-solid fa-pause"></i>
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            PlayOrPause();
-          }}
-        >
-          <i className="fa-solid fa-play"></i>
-        </button>
-      )}
-      <button
-        onClick={() => {
-          changeState("subsequent");
-        }}
-      >
-        <i className="fa-solid fa-forward"></i>
-      </button>
-      <button
-        onClick={() => {
-          navigate("/timer");
-        }}
-      >
-        Change time
-      </button>
-    </>
+      <div className="btn-container">
+        <div className="player-btn">
+          <button
+            onClick={() => {
+              changeState("previus");
+            }}
+          >
+            <i className="fa-solid fa-backward"></i>
+          </button>
+          {isPlaying ? (
+            <button
+              onClick={() => {
+                PlayOrPause();
+              }}
+            >
+              <i className="fa-solid fa-pause"></i>
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                PlayOrPause();
+              }}
+            >
+              <i className="fa-solid fa-play"></i>
+            </button>
+          )}
+          <button
+            onClick={() => {
+              changeState("subsequent");
+            }}
+          >
+            <i className="fa-solid fa-forward"></i>
+          </button>
+        </div>
+        <div className="change-btn">
+          <button
+            onClick={() => {
+              navigate("/timer");
+            }}
+          >
+            Change time
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 

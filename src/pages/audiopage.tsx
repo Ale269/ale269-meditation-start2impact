@@ -30,14 +30,22 @@ const AudioPage: React.FC = () => {
   );
 
   return (
-    <div className="Audio-test">
-      <AudioTimeBtn
-        srcState={srcState}
-        setSrcState={setSrcState}
-        srcArray={srcArray}
-        time={time}
-      />
-    </div>
+    <>
+      <div className="wave-sound">
+        <img src={element.wave4} alt="background"></img>
+      </div>
+      <section className="audio-page-section">
+        <h1>Audio player</h1>
+        <div className="audio-player-container">
+          <AudioTimeBtn
+            srcState={srcState}
+            setSrcState={setSrcState}
+            srcArray={srcArray}
+            time={time}
+          />
+        </div>
+      </section>
+    </>
   );
 };
 
