@@ -36,7 +36,7 @@ const AudioPage: React.FC = () => {
   const playerAnimation = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const stopAnimation = localStorage.getItem("soundAnimation");
+    const stopAnimation = localStorage.getItem("audioPageAnimation");
     if (stopAnimation !== null) {
       return;
     }
@@ -59,7 +59,7 @@ const AudioPage: React.FC = () => {
       opacity: 0,
     });
 
-    localStorage.setItem("soundAnimation", "true");
+    localStorage.setItem("audioPageAnimation", "true");
   }, []);
 
   return (
