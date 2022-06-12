@@ -37,11 +37,11 @@ const AudioTimeBtn: React.FC<Props> = ({
   const audio = useRef<HTMLAudioElement>(null);
   const AudioComponent = useMemo(() => {
     return (
-      <>
+      <div className="selected-item-content">
         <audio ref={audio} src={srcState.audio} loop></audio>
         <img src={srcState.image} alt="song cover"></img>
         <h3 className="title">{srcState.name}</h3>
-      </>
+      </div>
     );
   }, [srcState.audio]);
 
@@ -136,55 +136,57 @@ const AudioTimeBtn: React.FC<Props> = ({
   return (
     <div className="audio-btn-container">
       {AudioComponent}
-      <TimerComponent
-        time={time}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        audio={audio}
-        setTimeIsOver={setTimeIsOver}
-      />
-      <div className="btn-container">
-        <div className="player-btn">
-          <button
-            onClick={() => {
-              changeState("previus");
-            }}
-          >
-            <i className="fa-solid fa-backward"></i>
-          </button>
-          {isPlaying ? (
+      <div className="audio-player-content">
+        <TimerComponent
+          time={time}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          audio={audio}
+          setTimeIsOver={setTimeIsOver}
+        />
+        <div className="btn-container">
+          <div className="player-btn">
             <button
               onClick={() => {
-                PlayOrPause();
+                changeState("previus");
               }}
             >
-              <i className="fa-solid fa-pause"></i>
+              <i className="fa-solid fa-backward"></i>
             </button>
-          ) : (
+            {isPlaying ? (
+              <button
+                onClick={() => {
+                  PlayOrPause();
+                }}
+              >
+                <i className="fa-solid fa-pause"></i>
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  PlayOrPause();
+                }}
+              >
+                <i className="fa-solid fa-play"></i>
+              </button>
+            )}
             <button
               onClick={() => {
-                PlayOrPause();
+                changeState("subsequent");
               }}
             >
-              <i className="fa-solid fa-play"></i>
+              <i className="fa-solid fa-forward"></i>
             </button>
-          )}
-          <button
-            onClick={() => {
-              changeState("subsequent");
-            }}
-          >
-            <i className="fa-solid fa-forward"></i>
-          </button>
-        </div>
-        <div className="change-btn">
-          <button
-            onClick={() => {
-              navigate("/timer");
-            }}
-          >
-            Change time
-          </button>
+          </div>
+          <div className="change-btn">
+            <button
+              onClick={() => {
+                navigate("/timer");
+              }}
+            >
+              Change time
+            </button>
+          </div>
         </div>
       </div>
     </div>

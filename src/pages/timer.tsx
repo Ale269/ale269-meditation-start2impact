@@ -60,15 +60,15 @@ const Timer: React.FC = () => {
         case "increase10":
           return state + 10;
         case "decrease":
-          if (state > 0) {
+          if (state > 1) {
             return state - 1;
           }
-          return 0;
+          return 1;
         case "decrease10":
           if (state > 10) {
             return state - 10;
           }
-          return 0;
+          return 1;
         default:
           return state;
       }

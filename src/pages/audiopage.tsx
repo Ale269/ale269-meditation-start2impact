@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { element } from "../module/audioImage";
 import AudioTimeBtn from "../component/audioTimeBtn";
+import { gsap } from "gsap";
 
 interface SRC {
   audio: string;
@@ -29,14 +30,46 @@ const AudioPage: React.FC = () => {
     element.audioArray[settings.song]
   );
 
+  // animation
+  const waveAnimation = useRef<HTMLDivElement>(null);
+  const h1Animation = useRef<HTMLHeadingElement>(null);
+  const playerAnimation = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const stopAnimation = localStorage.getItem("soundAnimation");
+    if (stopAnimation !== null) {
+      return;
+    }
+
+    gsap.from(waveAnimation.current, {
+      duration: 1,
+      y: "-100%",
+    });
+
+    gsap.from(h1Animation.current, {
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+    });
+
+    gsap.from(playerAnimation.current, {
+      duration: 1,
+      y: "100%",
+      delay: 1,
+      opacity: 0,
+    });
+
+    localStorage.setItem("soundAnimation", "true");
+  }, []);
+
   return (
     <>
-      <div className="wave-sound">
+      <div ref={waveAnimation} className="wave-audiosound">
         <img src={element.wave4} alt="background"></img>
       </div>
       <section className="audio-page-section">
-        <h1>Audio player</h1>
-        <div className="audio-player-container">
+        <h1 ref={h1Animation}>Audio player</h1>
+        <div ref={playerAnimation} className="audio-player-container">
           <AudioTimeBtn
             srcState={srcState}
             setSrcState={setSrcState}
