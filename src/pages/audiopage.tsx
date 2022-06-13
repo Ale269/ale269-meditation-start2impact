@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { element } from "../module/audioImage";
-import AudioTimeBtn from "../component/audioTimeBtn";
+import AudioTimeBtn from "../components/audioTimeBtn";
 import { gsap } from "gsap";
 
 interface SRC {
