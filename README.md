@@ -31,6 +31,7 @@ The app is used to help the user relax by providing a timer and background sound
 - React router dom
 - Typescript
 - Redux toolkit
+- gsap
 
 [Back To The Top](#Meditation-Project)
 
