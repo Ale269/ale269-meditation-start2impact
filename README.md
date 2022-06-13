@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# Meditation Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Ale269/ale269-meditation-start2impact/20418c6f91b65f9432b394df791c3865b7723009/src/img/sfondo.svg" style="width: 500px;"/>
+</p>
 
-## Available Scripts
+> Creating an app that help you meditate.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### Table of Contents
+Project analysis.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Description](#description)
+- [How To Use](#how-to-use)
+- [References](#references)
+- [Author Info](#author-info)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## Description
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app is used to help the user relax by providing a timer and background sounds.<br />
 
-### `npm run build`
+- Try the application - [link to the application](https://meditation-ale269.netlify.app/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Built with
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Visual Studio Code
+- React
+- React router dom
+- Typescript
+- Redux toolkit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Back To The Top](#Meditation-Project)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## How To Use
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Visit the website](https://meditation-ale269.netlify.app/).<br />
+visit the website, select a sound, select a amount of time and start the player. </br>
+You can always change the song dynamically or set a new time with a simple click.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[Back To The Top](#Meditation-Project)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## References
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+I have studied mainly from these sources.
+
+- Start2Impact - [link to the website](https://www.start2impact.it/?utm_source=google&utm_medium=cpc&utm_campaign=Search_Brand&gclid=Cj0KCQiAieWOBhCYARIsANcOw0w5QK43cTLhwCWpsKfugzdnDB3c2GLK78gn2BA0thbsMWDFx5T7NRwaAp8XEALw_wcB)
+- The Odin Project - [link to the website](https://www.theodinproject.com/)
+- React official website - [link to the website](https://it.reactjs.org/)
+
+[Back To The Top](#Meditation-Project)
+
+---
+
+## Author Info
+
+Hi, I am a 23 year old boy who recently decided to undertake a path to learn UX design and Full Stack web developing.
+If you like, visit my website.
+
+- My website - [My website link](https://ale269.github.io/website/)
+
+[Back To The Top](#Meditation-Project)
