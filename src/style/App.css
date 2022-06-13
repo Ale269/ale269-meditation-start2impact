@@ -29,6 +29,10 @@ nav a.active {
   border-bottom: 2px solid #fff;
 }
 
+button {
+  cursor: pointer;
+}
+
 .header-container {
   width: 100%;
   height: 350px;
@@ -453,6 +457,19 @@ nav a.active {
 }
 
 .audio-btn-container .inactive button {
+  background-color: #dddddd;
+  cursor: default;
+  color: #c0c0c0;
+  border: 2px solid #c0c0c0;
+}
+
+.audio-btn-container .inactive button:hover {
+  background-color: #dddddd;
+  color: #c0c0c0;
+  border: 2px solid #c0c0c0;
+}
+
+.audio-btn-container .inactive button:active {
   background-color: #dddddd;
   color: #c0c0c0;
   border: 2px solid #c0c0c0;
